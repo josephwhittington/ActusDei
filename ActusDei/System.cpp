@@ -1,5 +1,14 @@
 #include "System.h"
 
+
+//************************************ 
+// Desc:      Window Constructor
+// @PARAMS
+// HINSTANCE _hinstance -> window instance handle
+// int _cmdshow -> Don't actually know what this is TBH, pass it in anyway
+// int _window_width -> width of the window
+// int _window_height -> height of the window
+//************************************
 ADSystem::Window::Window(HINSTANCE _hinstance, int _cmdshow, int _window_width, int _window_height)
 {
 	m_hinstance = _hinstance;
@@ -8,6 +17,10 @@ ADSystem::Window::Window(HINSTANCE _hinstance, int _cmdshow, int _window_width, 
 	m_window_height = _window_height;
 }
 
+//************************************ 
+// Returns:   bool
+// Desc:      Initializes Windows, returns false if error occurred
+//************************************
 bool ADSystem::Window::InitializeWindows()
 {
 	// Register class
@@ -58,11 +71,19 @@ bool ADSystem::Window::InitializeWindows()
 	return true;
 }
 
+//************************************ 
+// Returns:   bool
+// Desc:      Shuts down windows, returns false if error occurred
+//************************************
 bool ADSystem::Window::ShutDownWindows()
 {
 	return true;
 }
 
+//************************************ 
+// Returns:   LRESULT
+// Desc:      SHandles Windows messages, super important
+//************************************
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	unsigned int thing;
