@@ -8,6 +8,15 @@ bool Renderer::Initialize(ADSystem::Window* window)
 	return true;
 }
 
+bool Renderer::Shutdown()
+{
+	D3D11_SAFE_RELEASE(VIEW_RESOURCES.render_target_view);
+
+	if (!ShutdownPhongRenderer()) return false;
+
+	return true;
+}
+
 bool Renderer::Frame()
 {
 	// Rendering Code
@@ -61,6 +70,15 @@ bool Renderer::InitializePhongRenderer(ADSystem::Window* window)
 	VIEW_RESOURCES.viewport.TopLeftY = VIEW_RESOURCES.viewport.TopLeftX = 0;
 	VIEW_RESOURCES.viewport.MinDepth = 0;
 	VIEW_RESOURCES.viewport.MaxDepth = 1;
+
+	return true;
+}
+
+bool Renderer::ShutdownPhongRenderer()
+{
+	D3D11_SAFE_RELEASE(PHONG.chain);
+	D3D11_SAFE_RELEASE(PHONG.context);
+	D3D11_SAFE_RELEASE(PHONG.device);
 
 	return true;
 }

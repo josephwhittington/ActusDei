@@ -49,6 +49,10 @@ bool Engine::Shutdown()
 		delete m_Window;
 	}
 
+	// Shutdown renderer
+	if (!m_Renderer->Shutdown())
+		return false;
+
 	// Return this to figure if shutdown was successful
 	return shutdown_state;
 }
