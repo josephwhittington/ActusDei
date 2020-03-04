@@ -80,6 +80,21 @@ bool ADSystem::Window::ShutDownWindows()
 	return true;
 }
 
+HWND ADSystem::Window::GetWindowHandle()
+{
+	return m_hwnd;
+}
+
+int ADSystem::Window::GetWindowWidth()
+{
+	return m_window_width;
+}
+
+int ADSystem::Window::GetWindowHeight()
+{
+	return m_window_height;
+}
+
 //************************************ 
 // Returns:   LRESULT
 // Desc:      SHandles Windows messages, super important
@@ -108,6 +123,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
+	case WM_SIZE:
+	{
+		if (true)
+		{
+			break;
+		}
+		break;
+	}
 	default:
 		return DefWindowProcW(hWnd, message, wParam, lParam);
 	}

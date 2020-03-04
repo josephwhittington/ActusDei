@@ -1,5 +1,4 @@
 // ActusDei.cpp : Defines the entry point for the application.
-//
 
 #include "framework.h"
 #include "ActusDei.h"
@@ -13,6 +12,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ int       nCmdShow)
 {
     Engine game;
+
     if (!game.Initialize(hInstance, nCmdShow))
     {
         // TODO: Handle this shit

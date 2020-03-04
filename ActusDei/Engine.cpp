@@ -7,6 +7,8 @@ bool Engine::Initialize(HINSTANCE _hinstance, int _cmdshow, int _window_width /*
 	if (!m_Window->InitializeWindows())
 		return false;
 
+	if (!InitializeRenderers()) return false;
+
 	return true;
 }
 
@@ -27,6 +29,9 @@ bool Engine::Run()
 			break;
 
 		if (GetAsyncKeyState(VK_ESCAPE)) return false;
+
+		// Rendering
+		m_Renderer->Frame();
 	}
 }
 
@@ -46,4 +51,12 @@ bool Engine::Shutdown()
 
 	// Return this to figure if shutdown was successful
 	return shutdown_state;
+}
+
+bool Engine::InitializeRenderers()
+{
+	m_Renderer = new Renderer;
+	if(!m_Renderer->Initialize(m_Window)) return false;
+
+	return true;
 }

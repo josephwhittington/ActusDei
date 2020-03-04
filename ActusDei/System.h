@@ -1,6 +1,8 @@
 #pragma once
 #include <windows.h>
 
+#include "SystemResources.h"
+
 namespace ADSystem
 {
 	class Window 
@@ -11,6 +13,11 @@ namespace ADSystem
 		bool InitializeWindows();
 		bool ShutDownWindows();
 
+		// Getters/ Setters
+		HWND GetWindowHandle();
+		int GetWindowWidth();
+		int GetWindowHeight();
+
 	private:
 		HWND m_hwnd;
 		HINSTANCE m_hinstance;
@@ -19,6 +26,12 @@ namespace ADSystem
 		int m_cmdShow;
 		int m_screen_height, m_screen_width;
 		int m_window_height, m_window_width;
+	};
+
+	class ResourceManager
+	{
+	public:
+		
 	};
 }
 

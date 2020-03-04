@@ -1,6 +1,7 @@
 #pragma once
 
 #include "System.h"
+#include "Renderer.h"
 
 class Engine
 {
@@ -13,5 +14,9 @@ public:
 	bool Shutdown();
 
 private:
+	bool InitializeRenderers();
+
+private:
 	ADSystem::Window* m_Window;
+	Renderer* m_Renderer;
 };
