@@ -4,8 +4,7 @@
 #include "framework.h"
 #include "ActusDei.h"
 
-#include "Utils.h"
-#include "System.h"
+#include "Engine.h"
 
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -13,33 +12,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ LPWSTR    lpCmdLine,
                      _In_ int       nCmdShow)
 {
-    // TODO: Place code here.
-    ADSystem::Window window(hInstance, nCmdShow, 1080, 768);
-
-    if (!window.InitializeWindows())
+    Engine game;
+    if (!game.Initialize(hInstance, nCmdShow))
     {
-        return false;
+        // TODO: Handle this shit
+        return -1;
     }
 
-    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_ACTUSDEI));
+    game.Run();
+    game.Shutdown();
 
-    MSG msg;
-
-    // Main message loop:
-    while (true)
-    {
-		PeekMessage(&msg, NULL, 0, 0, PM_REMOVE);
-		if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-
-		if (msg.message == WM_QUIT)
-			break;
-
-		if (GetAsyncKeyState(VK_ESCAPE)) break;
-    }
-
-    return (int) msg.wParam;
+    return (int)0;
 }
